@@ -1,0 +1,3 @@
+[submodule "CAN"]
+	path = CAN
+	url = git@gitlab.com:solar-boat-pwr/firmware.libs.can-decoder.git
