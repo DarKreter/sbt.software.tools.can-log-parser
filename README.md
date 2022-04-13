@@ -2,7 +2,7 @@
 
 Example usage:
 ```bash
-python3 CanLogParser.py --dbc_file ../miscellaneous.can-ids/SBT.dbc --log_file sample.log
+python3 CanLogParser.py --sbt_dbc ../miscellaneous.can-ids/SBT.dbc --kls_dbc ../miscellaneous.can-ids/KLS.dbc --log_file sample.log
 ```
 To see arguments types:
 ```bash
