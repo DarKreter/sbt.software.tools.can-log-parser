@@ -44,13 +44,11 @@ for rawFrame in cantools.logreader.Parser(sys.stdin):
         filename = "output/{}-{}.csv".format(sourceIDname, paramIDname)
         csv_header_row = []
         csv_data_row = []
-        created = False
 
         # Open file if not opened yet
         if filename not in openedFiles:
             f = open(filename, 'a+')
             openedFiles[filename] = f
-            created = True
         file = openedFiles[filename]
 
         # Check if output format has time
@@ -73,9 +71,11 @@ for rawFrame in cantools.logreader.Parser(sys.stdin):
 
         # Write data to csv
         writer = csv.writer(file)
-        # If file is empty and just added to openedFiles (it could be not empty but seemed like that, because of not flushed buffer)
-        if os.stat(filename).st_size == 0 and created == True:
+        # If file is empty
+        if os.stat(filename).st_size == 0:
             writer.writerow(csv_header_row)
         writer.writerow(csv_data_row)
+        
+        file.flush()
 
 signal_handler(None, None)
