@@ -21,7 +21,7 @@ def signal_handler(sig, frame):
     sys.exit(0)
 
 # config can decoder
-canDecoder = CanDecoder(args.sbt_dbc,args.kls_dbc)
+canDecoder = CanDecoder(args.sbt_dbc, args.kls_dbc)
 # dictonary with all opened files
 openedFiles = dict()
 
@@ -55,6 +55,7 @@ for rawFrame in cantools.logreader.Parser(sys.stdin):
 
         # Check if output format has time
         if rawFrame.timestamp != None:
+            # Write time in requested style
             if args.time_type == TimeType.date:
                 time = rawFrame.timestamp
             else:
