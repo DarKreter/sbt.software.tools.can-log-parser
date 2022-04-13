@@ -35,26 +35,27 @@ with open(args.log_file, 'r') as file:
             print()
 
         finally:
-            csv_line = ["time", rawFrame.timestamp]
-            for signal in decodedFrame:
-                signalValue = "{:.3f}".format(decodedFrame[signal])
-                csv_line.append(signal)
-                csv_line.append(signalValue)
-
             filename = "output/{}-{}.csv".format(sourceIDname, paramIDname)
 
             if filename not in openedFiles:
                 f = open(filename, 'a+')
                 openedFiles[filename] = f
 
-            
-
             file = openedFiles[filename]
-            # create the csv writer
-            writer = csv.writer(file)
 
-            # write a row to the csv file
-            writer.writerow(csv_line)
+            csv_header_row = ["time"]
+            csv_data_row = [rawFrame.timestamp]
+            for signal in decodedFrame:
+                signalValue = "{:.3f}".format(decodedFrame[signal])
+                csv_header_row.append(signal)
+                csv_data_row.append(signalValue)
+
+            # Write data to csv
+            writer = csv.writer(file)
+            if filename not in openedFiles:
+                writer.writerow(csv_header_row)
+            writer.writerow(csv_data_row)
+
 
     for filename in openedFiles:
         openedFiles[filename].close()
