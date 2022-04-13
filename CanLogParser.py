@@ -72,7 +72,7 @@ for rawFrame in cantools.logreader.Parser(sys.stdin):
 
 
         # Write data to csv
-        writer = csv.writer(f)
+        writer = csv.writer(file)
         # If file is empty and just added to openedFiles (it could be not empty but seemed like that, because of not flushed buffer)
         if os.stat(filename).st_size == 0 and created == True:
             writer.writerow(csv_header_row)
