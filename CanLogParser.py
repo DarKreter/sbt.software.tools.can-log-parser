@@ -1,7 +1,7 @@
 from __headers__ import *
 
 class TimeType(Enum):
-    date = 'date'
+    UTC0 = 'UTC0'
     epoch = 'epoch'
 
 # Call parameters
@@ -11,7 +11,7 @@ parser.add_argument("--sbt_dbc", type=str,
 parser.add_argument("--kls_dbc", type=str,
                     help="path to dbc file with KLS frames", required=True)
 parser.add_argument("--time_type", type=TimeType, choices=list(TimeType), default=TimeType.epoch,
-                    help="time format: \"date\" or \"epoch\"")
+                    help="time format: \"UTC0\" or \"epoch\"")
 args = parser.parse_args()
 
 # Ctrl+C handler
@@ -54,7 +54,7 @@ for rawFrame in cantools.logreader.Parser(sys.stdin):
         # Check if output format has time
         if rawFrame.timestamp != None:
             # Write time in requested style
-            if args.time_type == TimeType.date:
+            if args.time_type == TimeType.UTC0:
                 time = rawFrame.timestamp
             else:
                 time = datetime.timestamp(rawFrame.timestamp)
@@ -75,7 +75,7 @@ for rawFrame in cantools.logreader.Parser(sys.stdin):
         if os.stat(filename).st_size == 0:
             writer.writerow(csv_header_row)
         writer.writerow(csv_data_row)
-        
+
         file.flush()
 
 signal_handler(None, None)
