@@ -64,7 +64,7 @@ for rawFrame in cantools.logreader.Parser(sys.stdin):
 
         # Get all frame signals
         for signal in decodedFrame:
-            signalValue = "{:.3f}".format(decodedFrame[signal])
+            signalValue = "{:.8f}".format(decodedFrame[signal])
             csv_header_row.append(signal)
             csv_data_row.append(signalValue)
 

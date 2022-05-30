@@ -2,9 +2,9 @@
 
 Example usage:
 ```bash
-cat sample.log | python3 CanLogParser.py --sbt_dbc ../miscellaneous.can-ids/SBT.dbc --kls_dbc ../miscellaneous.can-ids/KLS.dbc --time_type epoch
+cat sample.log | python3 CanLogParser.py --sbt_dbc ../miscellaneous.can-ids/SBT-generic.dbc --kls_dbc ../miscellaneous.can-ids/KLS.dbc --time_type epoch
 
-candump any -L | python3 CanLogParser.py --sbt_dbc ../miscellaneous.can-ids/SBT.dbc --kls_dbc ../miscellaneous.can-ids/KLS.dbc --time_type epoch
+candump any -L | python3 CanLogParser.py --sbt_dbc ../miscellaneous.can-ids/SBT-generic.dbc --kls_dbc ../miscellaneous.can-ids/KLS.dbc --time_type epoch
 ```
 To see arguments types:
 ```bash
